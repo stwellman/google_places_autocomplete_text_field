@@ -95,6 +95,11 @@ class Prediction {
 
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Prediction{description: $description, id: $id, matchedSubstrings: $matchedSubstrings, placeId: $placeId, reference: $reference, structuredFormatting: $structuredFormatting, terms: $terms, types: $types, lat: $lat, lng: $lng}';
+  }
 }
 
 class MatchedSubstrings {
