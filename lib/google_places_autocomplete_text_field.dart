@@ -74,6 +74,7 @@ class GooglePlacesAutoCompleteTextFormField extends StatefulWidget {
   final OverlayContainer? overlayContainer;
   final String? proxyURL;
   final String? types;
+  final Color? predictionsColor;
 
   const GooglePlacesAutoCompleteTextFormField({
     super.key,
@@ -91,6 +92,7 @@ class GooglePlacesAutoCompleteTextFormField extends StatefulWidget {
     this.overlayContainer,
     this.proxyURL,
     this.types,
+    this.predictionsColor,
 
     ////// DEFAULT TEXT FORM INPUTS
     this.initialValue,
@@ -332,6 +334,7 @@ class _GooglePlacesAutoCompleteTextFormFieldState
           }
         },
         child: Container(
+          color: widget.predictionsColor,
           padding: const EdgeInsets.all(10),
           child: Text(
             allPredictions[index].description!,
@@ -363,7 +366,7 @@ class _GooglePlacesAutoCompleteTextFormFieldState
       prediction.lat = placeDetails.result!.geometry!.location!.lat.toString();
       prediction.lng = placeDetails.result!.geometry!.location!.lng.toString();
 
-      widget.getPlaceDetailWithLatLng!(prediction);
+      widget.getPlaceDetailWithLatLng!(placeDetails);
     } catch (e) {
       rethrow;
     }
@@ -377,6 +380,5 @@ PlaceDetails parsePlaceDetailMap(Map responseBody) =>
     PlaceDetails.fromJson(responseBody as Map<String, dynamic>);
 
 typedef ItemClick = void Function(Prediction postalCodeResponse);
-typedef GetPlaceDetailswWithLatLng = void Function(
-    Prediction postalCodeResponse);
+typedef GetPlaceDetailswWithLatLng = void Function(PlaceDetails placeDetails);
 typedef OverlayContainer = Widget Function(Widget overlayChild);

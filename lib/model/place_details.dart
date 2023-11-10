@@ -18,6 +18,11 @@ class PlaceDetails {
     data['status'] = status;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'PlaceDetails{result: $result, status: $status}';
+  }
 }
 
 class Result {
@@ -109,6 +114,11 @@ class Result {
     data['website'] = website;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Result{addressComponents: $addressComponents, adrAddress: $adrAddress, formattedAddress: $formattedAddress, geometry: $geometry, icon: $icon, name: $name, photos: $photos, placeId: $placeId, reference: $reference, scope: $scope, types: $types, url: $url, utcOffset: $utcOffset, vicinity: $vicinity, website: $website}';
+  }
 }
 
 class AddressComponents {
@@ -130,6 +140,11 @@ class AddressComponents {
     data['short_name'] = shortName;
     data['types'] = types;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'AddressComponents{longName: $longName, shortName: $shortName, types: $types}';
   }
 }
 
