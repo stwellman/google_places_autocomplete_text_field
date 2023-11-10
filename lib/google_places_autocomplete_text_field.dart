@@ -2,15 +2,13 @@ library google_places_autocomplete_text_field;
 
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:rxdart/rxdart.dart';
-
 import 'package:google_places_autocomplete_text_field/model/place_details.dart';
 import 'package:google_places_autocomplete_text_field/model/prediction.dart';
+import 'package:rxdart/rxdart.dart';
 
 class GooglePlacesAutoCompleteTextFormField extends StatefulWidget {
   final String? initialValue;
@@ -75,6 +73,7 @@ class GooglePlacesAutoCompleteTextFormField extends StatefulWidget {
   final TextStyle? predictionsStyle;
   final OverlayContainer? overlayContainer;
   final String? proxyURL;
+  final String? types;
 
   const GooglePlacesAutoCompleteTextFormField({
     super.key,
@@ -91,6 +90,7 @@ class GooglePlacesAutoCompleteTextFormField extends StatefulWidget {
     this.predictionsStyle,
     this.overlayContainer,
     this.proxyURL,
+    this.types,
 
     ////// DEFAULT TEXT FORM INPUTS
     this.initialValue,
@@ -259,6 +259,9 @@ class _GooglePlacesAutoCompleteTextFormFieldState
         }
       }
     }
+
+    url = widget.types != null ? "$url&types=${widget.types}" : url;
+
     final response = await _dio.get(url);
 
     final subscriptionResponse =
